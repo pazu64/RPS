@@ -4,3 +4,8 @@ function getComputerChoice () {
     return rps[randomInt]
 }
 
+function getHumanChoice () {
+    let humanChoice = prompt("enter your choice of rock, paper, or scissors");
+    return humanChoice
+}
+
