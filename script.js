@@ -18,10 +18,12 @@ btn.forEach((btn) => {
 })
 
 let computerScore = 0; 
-let humanScore = 0
+let humanScore = 0;
 function playRound (humanChoice, computerChoice) {
     if (humanChoice === computerChoice) {
         status.textContent = `A draw, ${humanChoice} againts ${computerChoice}`
+        computerScore += 1;
+        humanScore += 1;
     }else if ((humanChoice === "rock" && computerChoice === "scissors") || (humanChoice === "paper" && computerChoice === "rock") || (humanChoice === "scissors" && computerChoice === "paper")) {
         humanScore += 1;
         status.textContent = `You win, ${humanChoice} againts ${computerChoice}`
@@ -32,10 +34,15 @@ function playRound (humanChoice, computerChoice) {
 }
 
 let result = document.querySelector(".result");
-let score = document.querySelector(".score")
-let status = document.createElement("h3")
-let humanPoints = document.createElement("p")
-let computerPoints = document.createElement("p")
+let score = document.querySelector(".score");
+let status = document.createElement("h3");
+let humanPoints = document.createElement("p");
+let computerPoints = document.createElement("p");
+let h2 = document.querySelector("h2");
+let resultGame = document.createElement("h3");
+let divBtn = document.querySelector(".btn")
+let reset = document.createElement("button")
+reset.textContent = "Reset";
 result.appendChild(status);
 score.appendChild(humanPoints);
 score.appendChild(computerPoints);
@@ -45,5 +52,34 @@ function playGame (human) {
     const computerSelection = getComputerChoice();
     playRound(humanSelection, computerSelection);
     humanPoints.textContent = `Player score : ${humanScore}`
-    computerPoints.textContent = `Computer Score : ${computerScore}`
+    computerPoints.textContent = `Computer Score : ${computerScore}`;
+    if ((humanScore === 5) || (computerScore === 5)) {
+        endGame()
+    }
 }
+
+
+function endGame () {
+    divBtn.style.display = "none"
+    h2.textContent = "Game Over!"
+    if (humanScore === 5) {
+        status.textContent = "You won this game!";
+        status.style.color = "green"
+    }else{
+        status.textContent = "This game was won by computer"
+        status.style.color = "red"
+    }
+    result.appendChild(reset)
+    reset.style.display = "grid"
+}
+function resetGame () {
+    humanScore = 0;
+    computerScore = 0;
+    divBtn.style.display = "flex"
+    reset.style.display = "none"
+    status.textContent = "";
+    status.style.color = "black"
+    humanPoints.textContent = `Player score : ${humanScore}`;
+    computerPoints.textContent = `Computer Score : ${computerScore}`;
+}
+reset.addEventListener("click", resetGame);
