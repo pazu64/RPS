@@ -17,24 +17,33 @@ btn.forEach((btn) => {
     })
 })
 
-let humanScore = 0;
 let computerScore = 0; 
-
+let humanScore = 0
 function playRound (humanChoice, computerChoice) {
     if (humanChoice === computerChoice) {
-        console.log(`A draw, ${humanChoice} againts ${computerChoice}`);
+        status.textContent = `A draw, ${humanChoice} againts ${computerChoice}`
     }else if ((humanChoice === "rock" && computerChoice === "scissors") || (humanChoice === "paper" && computerChoice === "rock") || (humanChoice === "scissors" && computerChoice === "paper")) {
         humanScore += 1;
-        console.log(`You win! ${humanChoice} beats ${computerChoice}.`);
+        status.textContent = `You win, ${humanChoice} againts ${computerChoice}`
     }else{
         computerScore += 1;
-        console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
+        status.textContent = `You lose, ${humanChoice} againts ${computerChoice}`
     }
 }
+
+let result = document.querySelector(".result");
+let score = document.querySelector(".score")
+let status = document.createElement("h3")
+let humanPoints = document.createElement("p")
+let computerPoints = document.createElement("p")
+result.appendChild(status);
+score.appendChild(humanPoints);
+score.appendChild(computerPoints);
 
 function playGame (human) {
     const humanSelection = human;
     const computerSelection = getComputerChoice();
     playRound(humanSelection, computerSelection);
-    console.log(`Result : Human : ${humanScore}, Computer : ${computerScore}`)
+    humanPoints.textContent = `Player score : ${humanScore}`
+    computerPoints.textContent = `Computer Score : ${computerScore}`
 }
