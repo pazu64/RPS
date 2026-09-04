@@ -1,30 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Papper Scissors</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style2.css">
     <script src="script.js" defer></script>
 </head>
 <body>
-    <main class="board">
-        <h1>Rock-Paper-Scissors</h1>
-        <h2>chose your weapon!</h2>
-        <div class="btn">
-            <button id="rock">Rock</button>
-            <button id="paper">Paper</button>
-            <button id="scissors">Scissors</button>
+    <div class="stage">
+        <div class="title">
+            <h1>Batu Kertas Gunting</h1>
+            <h2>Pilih senjatamu, lawan komputer</h2>
         </div>
-        <div class="result">
-
+        <div class="card">
+            <div class="score">
+                <div class="scoreBox you">
+                    <div class="label">Kamu</div>
+                    <div class="poin" id="scoreYou">0</div>
+                </div>
+                <div class="markVs">VS</div>
+                <div class="scoreBox cpu">
+                    <div class="label">komputer</div>
+                    <div class="poin" id="scoreCpu">0</div>
+                </div>
+            </div>
+            <div class="arena">
+                <div class="fighter">
+                    <div class="fighterIcon" id="youIcon">❔</div>
+                    <div class="fighterName">Kamu</div>
+                </div>
+                <div class="Vs">VS</div>
+                <div class="fighter">
+                    <div class="fighterIcon" id="cpuIcon">❔</div>
+                    <div class="fighterName">Komputer</div>
+                </div>
+            </div>
+            <div class="lastResult idle">
+                <div id="resultBanner">Pilih senjata untuk memulai</div>
+            </div>
+            <div class="choice">
+                <button class="choiceBtnRock" onclick="play('rock')">
+                    <span class="icon">🪨</span> <span class="choiceName">Batu</span>
+                </button>
+                <button class="choiceBtnPaper" onclick="play('paper')">
+                    <span class="icon">📄</span><span class="choiceName">Kertas</span>
+                </button>
+                <button class="choiceBtnScissors" onclick="play('scissors')">
+                    <span class="icon">✂️</span><span class="choiceName">Gunting</span>
+                </button>
+            </div>
+            <div class="reset">
+                <button class="resetBtn" onclick="resetScore()">Reset</button>
+            </div>
         </div>
-        <div class="score">
-            
+        <div class="note">
+            <p>batu kalahkan gunting - gunting kalahkan kertas - kertas kalahkan batu</p>
+            <p class="note">Create By Pazu</p>
         </div>
-    </main>
+    </div>
 </body>
 </html>

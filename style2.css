@@ -1,0 +1,186 @@
+:root{
+    --ink:#14131f;
+    --bg:#171622;
+    --card:#ffffff;
+    --rock:#7c83fd;
+    --paper:#ffd23f;
+    --scissors:#ff6b6b;
+    --win:#3ddc97;
+    --lose:#ff6b6b;
+    --draw:#a9a6c2;
+}
+body {
+    min-height: 100vh;
+    background: radial-gradient(circle at 15% 10%, rgba(124, 131, 253, 0.25), transparent 40%),radial-gradient(circle at 85% 90%, rgba(255, 107, 107, 0.2), transparent 40%), var(--bg);
+    color: var(--ink);
+    font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 28px 16px 60px;
+}
+.stage {
+    width: 100%;
+    max-width: 420px;
+}
+.title {
+    margin-bottom: 18px;
+    display: grid;
+    text-align: center;
+}
+.title h1 {
+    line-height: 1.05;
+    margin: 0 0 4px;
+    font-size: clamp(28px, 8vw, 36px);
+    color: #fff;
+    letter-spacing: -0.02em;
+    justify-content: center;
+}
+.title h2 {
+    margin: 0;
+    color: #c9c6de;
+    font-size: 14px;
+}
+.card {
+    background-color: var(--card);
+    border: 3px solid var(--ink);
+    border-radius: 18px;
+    box-shadow: 8px 8px 0 var(--ink);
+    padding: 22px 20px 24px;
+}
+.score {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    text-align: center;
+}
+.scoreBox {
+    border: 2px solid var(--ink);
+    border-radius: 10px;
+    background-color: var();
+    padding: 10px 0px;
+}
+.scoreBox .poin {
+    padding: 0px 45px;
+}
+.score .you {
+    background-color: #f4f3ff;
+}
+.score .cpu {
+    background-color: #fff1f1;
+}
+.poin {
+    font-weight: 700;
+    font-size: 25px;
+}
+.score .markVs {
+    font-weight: 600;
+    font-size: 15px;
+}
+.scoreBox .label {
+    font-size: 10px;
+    color: var(--ink);
+}
+.arena {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    gap: 50px;
+    text-align: center;
+}
+.arena .fighterIcon {
+    border: 2px solid var(--ink);
+    border-radius: 10px;
+    padding: 5px;
+    font-size: 40px;
+    background-color: #eee;
+}
+.arena .Vs {
+    font-size: 18px;
+    font-weight: 600;
+    color: #a9a6c2;
+}
+.arena .fighter {
+    text-align: center;
+}
+.fighter .fighterName {
+    font-size: 12px;
+    font-weight: 600;
+}
+#resultBanner {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #4b4867;
+}
+.result {
+    display: flex;
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-weight: 700;
+    min-height: 34px;
+    border-radius: 10px;
+    justify-content: center;
+    border: 2.5px solid transparent;
+    transition: all .2s ease;
+    align-items: center;
+}
+.result.win{ background: #e8fff5; border-color: var(--win); color: #0d7a53;}
+.result.lose{ background: #ffefef; border-color: var(--lose); color: #a52424;}
+.result.draw{ background: #f1f0f7; border-color: var(--draw); color: #4b4867;}
+.result.idle{ background: #8b88a3; font-weight: 500; font-size: 14px;}
+.choice {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+.choice button {
+    border: 2px solid var(--ink);
+    border-radius: 10px;
+    box-shadow: 4px 4px 0 var(--ink);
+    margin-bottom: 15px;
+}
+.choiceBtnRock {background-color: #eef0ff;}
+.choiceBtnPaper {background-color: #fff9e6;}
+.choiceBtnScissors {background-color: #ffefef;}
+.choiceName {font-weight: 700; margin-bottom: 20px;}
+.choice .icon {
+    font-size: 35px;
+    display: grid;
+    padding: 0px 10px;
+}
+.choice button:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0 0 0 var(--ink);
+}
+.reset {
+    text-align: center;
+    display: none;
+}
+.resetBtn {
+    background-color:  var(--ink);
+    color: var(--card);
+    padding: 7px 20px;
+    border-radius: 5px;
+    border: 1px;
+    font-size: 15px;
+    font-weight: 700;
+}
+.resetBtn:active {
+    opacity: .8;
+}
+.note {
+    text-align: center;
+    color: #e8fff5;
+    font-size: 10px;
+    text-transform: capitalize;
+}
+.lastResult h4 {
+    text-align: center;
+    font-size: 20px;
+}

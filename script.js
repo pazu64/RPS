@@ -1,85 +1,70 @@
-function getComputerChoice () {
-    let rps = ["rock", "paper", "scissors"];
-    let randomInt = Math.floor(Math.random() * 3);
-    return rps[randomInt];
-}
-let btn = document.querySelectorAll("button")
-btn.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-        let aksi = e.currentTarget.id;
-        if(aksi === "rock") {
-            playGame("rock")
-        }else if(aksi === "paper") {
-            playGame("paper")
-        }else{
-            playGame("scissors")
-        }
-    })
-})
+const icons = {rock: '🪨', paper: '📄', scissors: '✂️',};
+const name = {rock: 'Batu', paper: 'Kertas', scissors: 'Gunting'};
+let score = {you: 0, cpu: 0,}
+const banner = document.getElementById("resultBanner");
+let resetBtn = document.querySelector(".reset");
+const choiceBtn = document.querySelector(".choice");
+const scoreYou = document.getElementById("scoreYou") ;
+const scoreCpu = document.getElementById("scoreCpu");
+const lastResult = document.querySelector('.lastResult');
+const h4Result = document.createElement('h4');
+function play (choice) {
+    const cpuOptions = ['rock', 'paper', 'scissors'];
+    const cpuChoice = cpuOptions[Math.floor(Math.random() * 3)];
+    const youIcon = document.getElementById("youIcon");
+    const cpuIcon = document.getElementById("cpuIcon");
+    const cpuChoiceName = name[cpuChoice];
+    const youChoiceName = name[choice];
+    youIcon.textContent = icons[choice]
+    cpuIcon.textContent = icons[cpuChoice]
 
-let computerScore = 0; 
-let humanScore = 0;
-function playRound (humanChoice, computerChoice) {
-    if (humanChoice === computerChoice) {
-        status.textContent = `A draw, ${humanChoice} againts ${computerChoice}`
-        computerScore += 1;
-        humanScore += 1;
-    }else if ((humanChoice === "rock" && computerChoice === "scissors") || (humanChoice === "paper" && computerChoice === "rock") || (humanChoice === "scissors" && computerChoice === "paper")) {
-        humanScore += 1;
-        status.textContent = `You win, ${humanChoice} againts ${computerChoice}`
+    banner.classList.remove("win", "draw", "idle", "result", "lose")
+    let resultStatus;
+    if (choice === cpuChoice) {
+        resultStatus = 'draw';
+        banner.textContent = `Seri, sama-sama ${youChoiceName}`
+    }else if ((choice === 'rock' && cpuChoice === 'scissors') || (choice === 'paper' && cpuChoice === 'rock') || (choice === 'scissors' && cpuChoice === 'paper')) {
+        score.you++
+        resultStatus = 'win'
+        banner.textContent = `Kamu menang, ${youChoiceName} melawan ${cpuChoiceName}`
     }else{
-        computerScore += 1;
-        status.textContent = `You lose, ${humanChoice} againts ${computerChoice}`
+        score.cpu++
+        resultStatus = 'lose';
+        banner.textContent = `Kamu kalah, ${cpuChoiceName} melawan ${youChoiceName}`;
+    }
+    scoreCpu.textContent = score.cpu;
+    scoreYou.textContent = score.you;
+    banner.classList.add("result");
+    banner.classList.add(resultStatus);
+    if (score.you === 5 || score.cpu === 5) {
+        scoreFive()
     }
 }
-
-let result = document.querySelector(".result");
-let score = document.querySelector(".score");
-let status = document.createElement("h3");
-let humanPoints = document.createElement("p");
-let computerPoints = document.createElement("p");
-let h2 = document.querySelector("h2");
-let resultGame = document.createElement("h3");
-let divBtn = document.querySelector(".btn")
-let reset = document.createElement("button")
-reset.textContent = "Reset";
-result.appendChild(status);
-score.appendChild(humanPoints);
-score.appendChild(computerPoints);
-
-function playGame (human) {
-    const humanSelection = human;
-    const computerSelection = getComputerChoice();
-    playRound(humanSelection, computerSelection);
-    humanPoints.textContent = `Player score : ${humanScore}`
-    computerPoints.textContent = `Computer Score : ${computerScore}`;
-    if ((humanScore === 5) || (computerScore === 5)) {
-        endGame()
+function scoreFive () {
+    
+    resetBtn.style.display = "block";
+    choiceBtn.style.display = "none";
+    banner.textContent = "Game Over";
+    if (score.you === 5) {
+        h4Result.textContent = "Selamat!, kamu memenangkan pertandingan ini";
+        lastResult.appendChild(h4Result);
+        h4Result.style.color = 'green';
+        h4Result.style.display = "block";
+    }else if (score.cpu === 5) {
+        h4Result.textContent = "Yahh, kamu kalah dalam pertandingan ini, ayo coba lagi!";
+        lastResult.appendChild(h4Result)
+        h4Result.style.color = 'red';
+        h4Result.style.display = "block";
     }
 }
-
-
-function endGame () {
-    divBtn.style.display = "none"
-    h2.textContent = "Game Over!"
-    if (humanScore === 5) {
-        status.textContent = "You won this game!";
-        status.style.color = "green"
-    }else{
-        status.textContent = "This game was won by computer"
-        status.style.color = "red"
-    }
-    result.appendChild(reset)
-    reset.style.display = "grid"
+function resetScore () {
+    choiceBtn.style.display = "flex";
+    resetBtn.style.display = "none";
+    score.you = 0;
+    score.cpu = 0;
+    scoreCpu.textContent = score.cpu;
+    scoreYou.textContent = score.you;
+    h4Result.style.display = "none";
+    banner.textContent = "pilih senjata untuk memulai";
+    banner.classList.remove('idle', 'win', 'lose')
 }
-function resetGame () {
-    humanScore = 0;
-    computerScore = 0;
-    divBtn.style.display = "flex"
-    reset.style.display = "none"
-    status.textContent = "";
-    status.style.color = "black"
-    humanPoints.textContent = `Player score : ${humanScore}`;
-    computerPoints.textContent = `Computer Score : ${computerScore}`;
-}
-reset.addEventListener("click", resetGame);
