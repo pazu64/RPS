@@ -42,6 +42,13 @@ body {
     color: #c9c6de;
     font-size: 14px;
 }
+.rules {
+    text-align: center;
+    line-height: 0;
+    color: #c9c6de;
+    font-size: 13px;
+    font-weight: 600;
+}
 .card {
     background-color: var(--card);
     border: 3px solid var(--ink);

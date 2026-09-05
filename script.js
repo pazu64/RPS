@@ -67,4 +67,6 @@ function resetScore () {
     h4Result.style.display = "none";
     banner.textContent = "pilih senjata untuk memulai";
     banner.classList.remove('idle', 'win', 'lose')
+    youIcon.textContent = "❔"
+    cpuIcon.textContent = "❔"
 }
